@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-desafio
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-desafio
+  template:
+    metadata:
+      labels:
+        app: nginx-desafio
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.17-alpine
+        ports:
+        - containerPort: 80
+      
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name:  index-file
+          readOnly: true
+      
+      volumes:
+      - name: index-file
+        configMap:
+          name: index-file
+          items:
+            - key: index-file
+              path: index.html

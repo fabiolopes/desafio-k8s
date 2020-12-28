@@ -1,0 +1,6 @@
+version: "3"
+
+services:
+    go-greetings:
+        build: .
+        container_name: go-greetings
