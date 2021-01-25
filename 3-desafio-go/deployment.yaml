@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-desafio
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: go-desafio
+  template:
+    metadata:
+      labels:
+        app: go-desafio
+    spec:
+      containers:
+      - name: go
+        image: gcr.io/codeeducation-test-292323/go-greetings
+        ports:
+        - containerPort: 80
